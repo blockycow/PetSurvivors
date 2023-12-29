@@ -161,3 +161,6 @@ texture = ExtResource("2_vtse7")
 texture_filter = 1
 position = Vector2(-21, 28)
 texture = ExtResource("3_x2txk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
