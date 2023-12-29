@@ -159,7 +159,7 @@ texture = ExtResource("2_vtse7")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-21, 28)
+position = Vector2(-39, 30)
 texture = ExtResource("3_x2txk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
