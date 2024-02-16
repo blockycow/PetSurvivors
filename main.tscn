@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://tjhe38nboi8p"]
+[gd_scene load_steps=12 format=3 uid="uid://tjhe38nboi8p"]
 
 [ext_resource type="Texture2D" uid="uid://c7x8pm53dl8p3" path="res://assets/tilemap.png" id="1_ucfpn"]
 [ext_resource type="Texture2D" uid="uid://cvdtk4efxdt24" path="res://assets/tile_0099.png" id="2_vtse7"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://54k1c52x506b" path="res://assets/tile_0098.png" id="4_f4lhs"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_hgnqt"]
 [ext_resource type="Script" path="res://scripts/Knife.gd" id="6_ub3jw"]
+[ext_resource type="PackedScene" uid="uid://bixvt0xj14vg" path="res://prefabs/Enemies/BasicEnemy.tscn" id="7_05slv"]
+[ext_resource type="PackedScene" uid="uid://cyscgqqwfxrri" path="res://prefabs/Utility/HurtBox.tscn" id="7_lrtjr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fxleg"]
 texture = ExtResource("1_ucfpn")
@@ -146,8 +148,9 @@ separation = Vector2i(1, 1)
 [sub_resource type="TileSet" id="TileSet_8l201"]
 sources/0 = SubResource("TileSetAtlasSource_fxleg")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2mmn"]
-size = Vector2(12, 13)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r10m8"]
+radius = 3.0
+height = 11.0
 
 [node name="Main" type="Node2D"]
 
@@ -188,7 +191,7 @@ texture = ExtResource("4_f4lhs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_x2mmn")
+shape = SubResource("CapsuleShape2D_r10m8")
 
 [node name="Weapons" type="Node2D" parent="Player"]
 
@@ -200,4 +203,14 @@ script = ExtResource("6_ub3jw")
 [node name="CdTimer" type="Timer" parent="Player/Weapons/Knife"]
 autostart = true
 
+[node name="HurtBox" parent="Player" instance=ExtResource("7_lrtjr")]
+
+[node name="CollisionShape2D" parent="Player/HurtBox" index="0"]
+position = Vector2(0, 1)
+
+[node name="BasicEnemy" parent="." instance=ExtResource("7_05slv")]
+position = Vector2(87, -28)
+
 [connection signal="timeout" from="Player/Weapons/Knife/CdTimer" to="Player/Weapons/Knife" method="_on_cd_timer_timeout"]
+
+[editable path="Player/HurtBox"]

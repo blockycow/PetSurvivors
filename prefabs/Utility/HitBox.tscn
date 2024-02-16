@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://prefabs/Utility/HitBox.gd" id="1_bhiki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dm3t3"]
+size = Vector2(12, 12)
 
 [node name="HitBox" type="Area2D"]
 script = ExtResource("1_bhiki")

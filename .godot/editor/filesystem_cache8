@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1707741808
+::res://::1707950019
 icon.svg::CompressedTexture2D::3105889235649906365::1703863602::1707162616::1::::<><>::
-main.tscn::PackedScene::1352601113259045361::1707741808::0::1::::<><>::uid://c7x8pm53dl8p3::::res://assets/tilemap.png<>uid://cvdtk4efxdt24::::res://assets/tile_0099.png<>uid://bperbda72rw23::::res://assets/tile_0097.png<>uid://54k1c52x506b::::res://assets/tile_0098.png<>res://scripts/player.gd<>res://scripts/Knife.gd
+main.tscn::PackedScene::1352601113259045361::1707950018::0::1::::<><>::uid://c7x8pm53dl8p3::::res://assets/tilemap.png<>uid://cvdtk4efxdt24::::res://assets/tile_0099.png<>uid://bperbda72rw23::::res://assets/tile_0097.png<>uid://54k1c52x506b::::res://assets/tile_0098.png<>res://scripts/player.gd<>res://scripts/Knife.gd
 ::res://assets/::1707252803
 Snake-Sheet.png::CompressedTexture2D::8484536330038937996::1707252802::1707252803::1::::<><>::
 tilemap.png::CompressedTexture2D::7068396177717486118::1703863602::1703863602::1::::<><>::
@@ -137,9 +137,15 @@ tile_0128.png::CompressedTexture2D::7291218943476763982::1703863602::1703863602:
 tile_0129.png::CompressedTexture2D::6823519287851092063::1703863602::1703863602::1::::<><>::
 tile_0130.png::CompressedTexture2D::8452322280919082638::1703863602::1703863602::1::::<><>::
 tile_0131.png::CompressedTexture2D::632436517536607217::1703863602::1703863602::1::::<><>::
-::res://prefabs/::1707741808
+::res://prefabs/::1708083746
 knife_obj.gd::GDScript::-1::1707741808::0::1::::<>weapon_obj<>::
-knife_obj.tscn::PackedScene::4387156578114989102::1707735978::0::1::::<><>::uid://gl61xyd077l3::::res://assets/tile_0103.png<>res://prefabs/knife_obj.gd
+knife_obj.tscn::PackedScene::4387156578114989102::1707950019::0::1::::<><>::uid://gl61xyd077l3::::res://assets/tile_0103.png<>res://prefabs/knife_obj.gd
+::res://prefabs/enemies/::1708083746
+::res://prefabs/Utility/::1708083475
+HitBox.gd::GDScript::-1::1707984360::0::1::::<>Area2D<>::
+HitBox.tscn::PackedScene::7524387443155187283::1708081404::0::1::::<><>::res://prefabs/Utility/HitBox.gd
+HurtBox.gd::GDScript::-1::1708082397::0::1::::<>Area2D<>::
+HurtBox.tscn::PackedScene::6494665429118675798::1708083475::0::1::::<><>::res://prefabs/Utility/HurtBox.gd
 ::res://scenes/::1707256429
 ::res://scripts/::1707741791
 Knife.gd::GDScript::-1::1707664810::0::1::::<>Weapon<>::

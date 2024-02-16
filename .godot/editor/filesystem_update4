@@ -8,3 +8,5 @@ res://prefabs/Utility/HitBox.tscn
 res://prefabs/Utility/HurtBox.tscn
 res://prefabs/Utility/HitBox.gd
 res://prefabs/Utility/HurtBox.gd
+res://prefabs/Enemies/Enemy.gd
+res://prefabs/Enemies/BasicEnemy.tscn
