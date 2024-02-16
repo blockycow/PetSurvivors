@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://tjhe38nboi8p"]
+[gd_scene load_steps=11 format=3 uid="uid://tjhe38nboi8p"]
 
 [ext_resource type="Texture2D" uid="uid://c7x8pm53dl8p3" path="res://assets/tilemap.png" id="1_ucfpn"]
 [ext_resource type="Texture2D" uid="uid://cvdtk4efxdt24" path="res://assets/tile_0099.png" id="2_vtse7"]
 [ext_resource type="Texture2D" uid="uid://bperbda72rw23" path="res://assets/tile_0097.png" id="3_x2txk"]
 [ext_resource type="Texture2D" uid="uid://54k1c52x506b" path="res://assets/tile_0098.png" id="4_f4lhs"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_hgnqt"]
+[ext_resource type="PackedScene" uid="uid://b3rf3fauop8co" path="res://prefabs/knife_obj.tscn" id="5_oaa1a"]
 [ext_resource type="Script" path="res://scripts/Knife.gd" id="6_ub3jw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fxleg"]
@@ -199,5 +200,7 @@ script = ExtResource("6_ub3jw")
 
 [node name="CdTimer" type="Timer" parent="Player/Weapons/Knife"]
 autostart = true
+
+[node name="knife_obj" parent="." instance=ExtResource("5_oaa1a")]
 
 [connection signal="timeout" from="Player/Weapons/Knife/CdTimer" to="Player/Weapons/Knife" method="_on_cd_timer_timeout"]

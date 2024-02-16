@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3rf3fauop8co"]
+
+[ext_resource type="Texture2D" uid="uid://gl61xyd077l3" path="res://assets/tile_0103.png" id="1_6enit"]
+[ext_resource type="Script" path="res://prefabs/knife_obj.gd" id="1_qja4l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxi6q"]
+size = Vector2(8, 13)
+
+[node name="knife_obj" type="Area2D" groups=["attack"]]
+z_index = 5
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_qja4l")
+
+[node name="Knife_sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 1.5708
+texture = ExtResource("1_6enit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2.18557e-08)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_oxi6q")
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]
