@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt18fojcqlj7p"]
+
+[ext_resource type="Script" path="res://prefabs/item_option.gd" id="1_k5o2b"]
+[ext_resource type="Texture2D" uid="uid://gl61xyd077l3" path="res://assets/Greybox/tile_0103.png" id="2_3pbh6"]
+
+[node name="ItemOption" type="ColorRect"]
+custom_minimum_size = Vector2(180, 50)
+anchors_preset = -1
+anchor_right = 0.281
+anchor_bottom = 0.139
+offset_right = -143.712
+offset_bottom = -40.072
+color = Color(0.545098, 0.545098, 0.545098, 1)
+script = ExtResource("1_k5o2b")
+
+[node name="ItemBg" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 29.0
+offset_bottom = 29.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="ItemIcon" type="TextureRect" parent="ItemBg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3pbh6")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 25.0
+text = "Name"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -21.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Description of "
+autowrap_mode = 3
+
+[node name="LevelLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 3.0
+offset_right = 188.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 12
+text = "Level: 1"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

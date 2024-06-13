@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqxm8d18nbbgq"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/Feather.gd" id="1_mxiqx"]
+
+[node name="Feather" type="Node2D"]
+script = ExtResource("1_mxiqx")
+damage = 3
+base_ammo = 2
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="CdTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="CdTimer" to="." method="_on_cd_timer_timeout"]

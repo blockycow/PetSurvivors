@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cedu0sbo6l0f5"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/Claw.gd" id="1_pgpky"]
+
+[node name="Claw" type="Node2D"]
+script = ExtResource("1_pgpky")

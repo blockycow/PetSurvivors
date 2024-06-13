@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwqg5o8smbnel"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/Bone.gd" id="1_kpbjo"]
+
+[node name="Bone" type="Node2D"]
+script = ExtResource("1_kpbjo")
+hp = 3
+speed = 70
+damage = 3
+knockback_amount = 50
+
+[node name="CdTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="CdTimer" to="." method="_on_cd_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

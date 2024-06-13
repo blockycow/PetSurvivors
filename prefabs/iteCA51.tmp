@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bim61spw7cac6"]
+
+[ext_resource type="Texture2D" uid="uid://chs611yf5p3hy" path="res://assets/GUI/EmptyItem.png" id="1_6rnra"]
+[ext_resource type="Script" path="res://prefabs/item_container.gd" id="1_uvll0"]
+
+[node name="ItemContainer" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6rnra")
+script = ExtResource("1_uvll0")
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

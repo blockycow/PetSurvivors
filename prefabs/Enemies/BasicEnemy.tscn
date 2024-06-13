@@ -1,27 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://bixvt0xj14vg"]
+[gd_scene load_steps=7 format=3 uid="uid://bixvt0xj14vg"]
 
 [ext_resource type="Script" path="res://prefabs/Enemies/Enemy.gd" id="1_jgs73"]
-[ext_resource type="Texture2D" uid="uid://cdqwki2268kcd" path="res://assets/tile_0110.png" id="2_22yjb"]
 [ext_resource type="PackedScene" uid="uid://dfg4tdrookrgt" path="res://prefabs/Utility/HitBox.tscn" id="2_bhb1p"]
+[ext_resource type="Texture2D" uid="uid://bp77e7ahdna4x" path="res://assets/Toaster.png" id="2_f366b"]
+[ext_resource type="Script" path="res://prefabs/Enemies/SpriteVisual.gd" id="3_3078k"]
 [ext_resource type="PackedScene" uid="uid://cyscgqqwfxrri" path="res://prefabs/Utility/HurtBox.tscn" id="3_f3qag"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbuqg"]
-radius = 3.0
+radius = 5.0
 height = 12.0
 
 [node name="BasicEnemy" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_jgs73")
+hp = 15
+experience = 5
+enemy_damage = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_22yjb")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_f366b")
+script = ExtResource("3_3078k")
+
+[node name="HurtTimer" type="Timer" parent="Sprite2D"]
+wait_time = 0.2
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_tbuqg")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="HitBox" parent="." instance=ExtResource("2_bhb1p")]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+debug_color = Color(0.976471, 0, 0, 0.419608)
 
 [node name="HurtBox" parent="." instance=ExtResource("3_f3qag")]
+collision_layer = 0
+collision_mask = 4
+HurtBoxType = 1
+
+[connection signal="timeout" from="Sprite2D/HurtTimer" to="Sprite2D" method="_on_hurt_timer_timeout"]
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="hurt" from="HurtBox" to="Sprite2D" method="_on_hurt_box_hurt"]
 
 [editable path="HitBox"]
 [editable path="HurtBox"]

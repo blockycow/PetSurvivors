@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://yqnni1dt5uq6"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/Venom.gd" id="1_bu2wj"]
+
+[node name="Venom" type="Node2D"]
+script = ExtResource("1_bu2wj")
+damage = 1
+knockback_amount = 0
+lifetime = 2
+
+[node name="CdTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CdTimer" to="." method="_on_cd_timer_timeout"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://crplxooecuqrx"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/Venom_obj.gd" id="1_lisca"]
+[ext_resource type="Texture2D" uid="uid://blggxyo7imavd" path="res://assets/Greybox/tile_0077.png" id="2_0awft"]
+[ext_resource type="PackedScene" uid="uid://c7u763ab1qcpr" path="res://prefabs/Utility/TimedDestroy.tscn" id="3_xrthr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqey2"]
+size = Vector2(14, 13)
+
+[node name="VenomObj" type="Area2D" groups=["attack"]]
+z_index = -10
+z_as_relative = false
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_lisca")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0.54902, 0, 1)
+texture = ExtResource("2_0awft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_oqey2")
+
+[node name="TimedDestroy" parent="." instance=ExtResource("3_xrthr")]

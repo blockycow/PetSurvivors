@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bim61spw7cac6"]
+
+[ext_resource type="Texture2D" uid="uid://chs611yf5p3hy" path="res://assets/GUI/EmptyItem.png" id="1_6rnra"]
+[ext_resource type="Script" path="res://prefabs/item_container.gd" id="1_uvll0"]
+[ext_resource type="Texture2D" uid="uid://gl61xyd077l3" path="res://assets/Greybox/tile_0103.png" id="3_fbgp8"]
+
+[node name="ItemContainer" type="TextureRect"]
+offset_right = 12.0
+offset_bottom = 12.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_6rnra")
+script = ExtResource("1_uvll0")
+
+[node name="ItemTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_fbgp8")
+expand_mode = 1

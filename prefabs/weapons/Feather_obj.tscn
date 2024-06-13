@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3rf3fauop8co"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/Feather_obj.gd" id="1_qnnky"]
+[ext_resource type="Texture2D" uid="uid://bdvty6qrjadtq" path="res://assets/Weapons/Feather.png" id="2_2v7gd"]
+[ext_resource type="PackedScene" uid="uid://c7u763ab1qcpr" path="res://prefabs/Utility/TimedDestroy.tscn" id="3_27oc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxi6q"]
+size = Vector2(6, 13)
+
+[node name="Feather_obj" type="Area2D" groups=["attack"]]
+z_index = 5
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_qnnky")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -5.96046e-08)
+rotation = 0.785397
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_2v7gd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_oxi6q")
+
+[node name="TimedDestroy" parent="." instance=ExtResource("3_27oc5")]

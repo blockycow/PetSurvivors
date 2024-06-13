@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b14virf5nm3lv"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/Bubble_obj.gd" id="1_3p3eb"]
+[ext_resource type="PackedScene" uid="uid://c7u763ab1qcpr" path="res://prefabs/Utility/TimedDestroy.tscn" id="1_7jjiw"]
+[ext_resource type="Texture2D" uid="uid://bufeweeb8hjdj" path="res://assets/Weapons/Bubble.png" id="2_vwx74"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ooxrn"]
+radius = 8.0
+
+[node name="BubbleObj" type="Area2D" groups=["attack"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_3p3eb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_vwx74")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ooxrn")
+
+[node name="TimedDestroy" parent="." instance=ExtResource("1_7jjiw")]

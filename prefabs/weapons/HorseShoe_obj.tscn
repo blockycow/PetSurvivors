@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba7j8j6enetes"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/HorseShoe_obj.gd" id="1_stq6r"]
+[ext_resource type="Texture2D" uid="uid://1cyxmmlfyv1p" path="res://assets/Weapons/HorseShoe.png" id="2_bfwvw"]
+[ext_resource type="PackedScene" uid="uid://c7u763ab1qcpr" path="res://prefabs/Utility/TimedDestroy.tscn" id="3_kojeu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4k2di"]
+radius = 7.0
+
+[node name="HorseShoeObj" type="Area2D" groups=["attack"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_stq6r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4k2di")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3375, 0.3375)
+texture = ExtResource("2_bfwvw")
+offset = Vector2(0.5, 0.5)
+
+[node name="TimedDestroy" parent="." instance=ExtResource("3_kojeu")]

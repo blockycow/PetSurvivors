@@ -8,8 +8,11 @@ extends CharacterBody2D
 var knockback = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
+@onready var loot_base = get_tree().get_first_node_in_group("loot")
 @onready var sprite = $Sprite2D
 @onready var hitBox = $HitBox
+
+var exp_obj = preload("res://prefabs/experience_obj.tscn")
 
 signal remove_from_array(object)
 
@@ -27,5 +30,16 @@ func _physics_process(_delta):
 		sprite.flip_h = true
 	elif direction.x < -0.1:
 		sprite.flip_h = false
-		
 
+func death():
+	var new_exp_obj = exp_obj.instantiate()
+	new_exp_obj.global_position = global_position
+	new_exp_obj.experience = experience
+	loot_base.call_deferred("add_child",new_exp_obj)
+	queue_free()
+
+func _on_hurt_box_hurt(damage, angle, knockback_amount):
+	hp -= damage
+	knockback = angle * knockback_amount
+	if hp <= 0:
+		death()

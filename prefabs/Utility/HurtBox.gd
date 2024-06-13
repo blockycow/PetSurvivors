@@ -3,9 +3,9 @@ extends Area2D
 @export_enum("Cooldown","HitOnce","DisableHitBox") var HurtBoxType = 0
 
 @onready var collision = $CollisionShape2D
-@onready var disableTimer = $HitDisableTimer
+@onready var disableTimer = $HurtDisableTimer
 
-signal hurt(damage, angle, knockback)
+signal hurt(damage, angle, knockback_amount	)
 
 var hit_once_array = []
 
@@ -31,8 +31,9 @@ func _on_area_entered(area):
 			var damage = area.damage
 			var angle = Vector2.ZERO
 			var knockback = 1
-			if not area.get("angle") == null:
-				angle = area.angle
+			if not area.get("direction") == null:
+				#angle = area.direction
+				angle = (global_transform.origin - area.global_transform.origin).normalized()
 			if not area.get("knockback_amount") == null:
 				knockback = area.knockback_amount
 			

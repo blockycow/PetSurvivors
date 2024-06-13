@@ -1,0 +1,208 @@
+[gd_scene load_steps=16 format=3 uid="uid://12v2xkryxl3h"]
+
+[ext_resource type="Script" path="res://prefabs/player.gd" id="1_hvo6m"]
+[ext_resource type="Texture2D" uid="uid://c6yj1xipucge5" path="res://assets/Pets/Cat_3_1.png" id="2_ulyhk"]
+[ext_resource type="Script" path="res://prefabs/Enemies/SpriteVisual.gd" id="3_r5obe"]
+[ext_resource type="PackedScene" uid="uid://cyscgqqwfxrri" path="res://prefabs/Utility/HurtBox.tscn" id="4_6j70p"]
+[ext_resource type="Script" path="res://prefabs/weapons.gd" id="4_32yhq"]
+[ext_resource type="Texture2D" uid="uid://cj6a5rhwov14" path="res://assets/GUI/healthbar.png" id="5_dy4hc"]
+[ext_resource type="Texture2D" uid="uid://dlx33roiu0vlj" path="res://assets/GUI/exp_progress.png" id="5_hq1qk"]
+[ext_resource type="Script" path="res://prefabs/PlayerGUI.gd" id="5_uayvp"]
+[ext_resource type="Texture2D" uid="uid://dx7xx6vfahxlq" path="res://assets/GUI/exp_background.png" id="6_7mqje"]
+[ext_resource type="Texture2D" uid="uid://da53mspvqfxq4" path="res://assets/GUI/health.png" id="6_pbin3"]
+[ext_resource type="Script" path="res://prefabs/Utility/FpsTracker.gd" id="11_rqyar"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r10m8"]
+radius = 3.0
+height = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6w1ox"]
+radius = 171.026
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d48sh"]
+radius = 35.0143
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_blr8u"]
+radius = 5.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 5
+script = ExtResource("1_hvo6m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ulyhk")
+flip_h = true
+script = ExtResource("3_r5obe")
+
+[node name="HurtTimer" type="Timer" parent="Sprite"]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("CapsuleShape2D_r10m8")
+
+[node name="Weapons" type="Node2D" parent="."]
+script = ExtResource("4_32yhq")
+
+[node name="HurtBox" parent="." instance=ExtResource("4_6j70p")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, 1)
+
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+shape = SubResource("CircleShape2D_6w1ox")
+debug_color = Color(0.792157, 0.623529, 0.286275, 0.419608)
+
+[node name="GrabArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+shape = SubResource("CircleShape2D_d48sh")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_blr8u")
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="GUILayer"]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_uayvp")
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -44.0
+offset_right = 19.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_over = ExtResource("5_dy4hc")
+texture_progress = ExtResource("6_pbin3")
+
+[node name="ExperienceBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+nine_patch_stretch = true
+texture_over = ExtResource("6_7mqje")
+texture_progress = ExtResource("5_hq1qk")
+
+[node name="LevelLabel" type="Label" parent="GUILayer/GUI/ExperienceBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = 68.0
+grow_vertical = 2
+text = "Level: 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponContainers" type="GridContainer" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 50.0
+offset_right = 564.0
+offset_bottom = 105.0
+columns = 10
+
+[node name="LevelUpPanel" type="Panel" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -125.0
+offset_right = 100.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelupLabel" type="Label" parent="GUILayer/GUI/LevelUpPanel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Level Up!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeOptions" type="VBoxContainer" parent="GUILayer/GUI/LevelUpPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 190.0
+offset_bottom = 100.0
+
+[node name="FpsLabel" type="Label" parent="GUILayer/GUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 50.0
+offset_bottom = 73.0
+grow_horizontal = 0
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_rqyar")
+
+[connection signal="player_hp_changed" from="." to="GUILayer/GUI" method="_on_player_hp_changed"]
+[connection signal="player_levelup" from="." to="GUILayer/GUI" method="_on_player_levelup"]
+[connection signal="player_xp_changed" from="." to="GUILayer/GUI" method="_on_player_xp_changed"]
+[connection signal="upgrade_item" from="." to="GUILayer/GUI" method="_on_player_upgrade_item"]
+[connection signal="timeout" from="Sprite/HurtTimer" to="Sprite" method="_on_hurt_timer_timeout"]
+[connection signal="on_equip" from="Weapons" to="GUILayer/GUI" method="_on_weapons_on_equip"]
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="hurt" from="HurtBox" to="Sprite" method="_on_hurt_box_hurt"]
+[connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
+[connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
+[connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
+[connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
+
+[editable path="HurtBox"]

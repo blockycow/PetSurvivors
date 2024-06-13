@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://uwj26u3odgrb"]
+
+[ext_resource type="Script" path="res://prefabs/weapons/HorseShoe.gd" id="1_lee25"]
+
+[node name="HorseShoe" type="Node2D"]
+script = ExtResource("1_lee25")
+
+[node name="CdTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CdTimer" to="." method="_on_cd_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
